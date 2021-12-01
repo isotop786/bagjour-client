@@ -1,9 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import CustomerLogin from "./CustomerLogin";
 
 const CustomerReg = ()=>{
 
+    const [token,setToken] = useState(false);
+    const [auth,setAuth] = useState('')
     const [msg,setMsg] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -55,6 +58,7 @@ const CustomerReg = ()=>{
             setCompanyName('');
             setPassword('');
             setMsg('Registration Success!')
+            setAuth(true)
 
 
         })
@@ -65,64 +69,73 @@ const CustomerReg = ()=>{
 
 
     return(
-        <div className="col-md-6 mt-4">
-          <h3 className="my-3">Customer Registration Page</h3>
-           {msg !== '' && (
-               <div className="my-3">
-               <h4 className="text-success">{msg}</h4>
-               <Link className="btn btn-danger" to='partner-reg'>Login</Link>
+
+    <>
+        {auth  && (<CustomerLogin setToken={setToken}/>)}
+
+        {!auth && (
+             <div className="col-md-6 mt-4">
+             <h3 className="my-3">Customer Registration Page</h3>
+              {msg !== '' && (
+                  <div className="my-3">
+                  <h4 className="text-success">{msg}</h4>
+                  <Link className="btn btn-danger" to='partner-reg'>Login</Link>
+                  </div>
+              )}
+               <div className="card  cd card-default bg-light p-3">
+                   <form action="#" onSubmit={submitForm}>
+                       <div className="form-gorup">
+                           <label htmlFor="firstName">First Name</label>
+                           <input type="text" name="firstname" id="" className="form-control" 
+                           value={firstName} onChange={e => setFirstName(e.target.value)}
+                           />
+                       </div>
+                       <div className="form-gorup">
+                           <label htmlFor="lastName">Last Name</label>
+                           <input type="text" name="lastName" id="" className="form-control" 
+                           value={lastName} onChange={e => setLastName(e.target.value)}
+                           />
+                       </div>
+                       <div className="form-gorup">
+                           <label htmlFor="email">Email</label>
+                           <input type="email" name="email" id="" className="form-control" 
+                           value={email} onChange={e => setEmail(e.target.value)}
+                           />
+                       </div>
+                       <div className="form-gorup">
+                           <label htmlFor="companyName">Company Name</label>
+                           <input type="text" name="companyName" id="" className="form-control" 
+                           value={companyName} onChange={e => setCompanyName(e.target.value)}
+                           />
+                       </div>
+                       <div className="form-gorup">
+                           <label htmlFor="password">Password</label>
+                           <input type="password" name="password" id="" className="form-control" 
+                           value={password} onChange={e => setPassword(e.target.value)}
+                           />
+                       </div>
+   
+                       <div>
+                           <input type="submit" value="Register"
+                           className="btn btn-info btn-block mt-3"
+                           />
+                       </div>
+   
+   
+                   </form>
                </div>
-           )}
-            <div className="card  cd card-default bg-light p-3">
-                <form action="#" onSubmit={submitForm}>
-                    <div className="form-gorup">
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" name="firstname" id="" className="form-control" 
-                        value={firstName} onChange={e => setFirstName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-gorup">
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" name="lastName" id="" className="form-control" 
-                        value={lastName} onChange={e => setLastName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-gorup">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="" className="form-control" 
-                        value={email} onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-gorup">
-                        <label htmlFor="companyName">Company Name</label>
-                        <input type="text" name="companyName" id="" className="form-control" 
-                        value={companyName} onChange={e => setCompanyName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-gorup">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id="" className="form-control" 
-                        value={password} onChange={e => setPassword(e.target.value)}
-                        />
-                    </div>
+               <style jsx>{`
+               .cd{
+                   background:#eee!important;
+               }
+               
+               
+               `}</style>
+           </div>
+        )}
+       
 
-                    <div>
-                        <input type="submit" value="Register"
-                        className="btn btn-info btn-block mt-3"
-                        />
-                    </div>
-
-
-                </form>
-            </div>
-            <style jsx>{`
-            .cd{
-                background:#eee!important;
-            }
-            
-            
-            `}</style>
-        </div>
+        </>
     )
 }
 

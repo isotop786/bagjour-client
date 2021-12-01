@@ -37,6 +37,8 @@ const Nav = ()=>{
           <Link className="dropdown-item" to="/customer-reg">Customer Registration</Link>
           {/* <a className="dropdown-item" href="#">Another action</a> */}
           <div className="dropdown-divider"></div>
+          <Link className="dropdown-item" to="/partner-login">Partner Login</Link>
+          <Link className="dropdown-item" to="/customer-login">Customer Login</Link>
          
         </div>
       </li>
