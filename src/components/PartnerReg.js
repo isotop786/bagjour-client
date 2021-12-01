@@ -38,7 +38,7 @@ const PartnerReg = ()=>{
         }
 
 
-        axios.post('http://localhost:8080/partner-reg',{
+        axios.post('https://bagjour.herokuapp.com/partner-reg',{
             
             firstName,lastName,email,companyName,password
               

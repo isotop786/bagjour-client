@@ -38,7 +38,7 @@ const CustomerReg = ()=>{
         }
 
 
-        axios.post('http://localhost:8080/customer-reg',{
+        axios.post('https://bagjour.herokuapp.com/customer-reg',{
             
             firstName,lastName,email,companyName,password
               
